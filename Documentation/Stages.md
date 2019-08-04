@@ -7,6 +7,8 @@ This is the stage where we also create the concept art for the game as well.
 
 This is also the stage where we also start creating most of the 3D models that will be used in the game, such as weapons, shields, houses, rocks and props once we have completed the concept art for those models.
 
+We should also create a basic prototype / proof of concept.
+
 ## Production - Not Started
 This is the stage where we start production on the game itself including the engine (if we roll our own), and the game logic. We will also be able to add more models and art assets at this stage if needed, but we should preferably have most of them by now.
 

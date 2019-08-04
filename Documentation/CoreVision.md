@@ -63,3 +63,46 @@ Notes:
 This game may be set in a medieval-like world that will also take strong influences from modern society where appropriate (will be decided in design document).
 
 The game world will be described in a `WorldBuild` folder inside of `(Root)/Documentation` where we will write all the lore, in-game books, main story, side quests and other world details.
+
+## Game Controlling
+The player should be able to control their gaming using two methods:
+* Keyboard & Mouse
+* Console Controller
+
+The game should be designed around these two controller schemes and should make an effort to avoid complex keyboard or controller specific.
+
+For text-based servers, the user will need access to a keyboard in order to communicate but for voice-based servers, this should not be too much of an issue.
+
+The player should be able to move their camera around by moving their mouse around or by moving one of their controller analog sticks.
+
+The player should then be able to move their character by using the other analog stick or by using the standard WASD on their keyboard.
+
+The player should be able to handle most in-game actions with both a keyboard and a mouse.
+
+The player should also be able to change most of these keyboard/controller keybinds to work with other keys.
+
+## Game Settings
+The player should be able to also change most graphical settings in-game without needing to quit the game.
+
+The settings that the player should always have access to include:
+
+Gameplay:
+* Language (although this could easily be determined by the system language)
+* FPS Counter
+* Mouse / Controller Sensitivity
+* Invert 
+* UI Scale
+
+Sound:
+* Master Volume
+* Music Volume
+* Sound Effects Volume
+* Footsteps Volume
+
+Graphics:
+* Resolution
+* Texture Quality
+* Shadow Quality
+* Draw Distance
+* Texture Filtering
+* Ansiotropy
