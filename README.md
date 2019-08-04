@@ -6,7 +6,8 @@ It will be a free, open-source, cross-platform multi-player RPG expierience with
 This project is currently within the design stage and no code has actually been written as of yet.
 
 ## Core Vision Document
-Read the core Vision document to get a grasp of the core idea's and the vision for the game including the design pillars.
+Read the core Vision document to get a grasp of the core idea's and the vision for the game including the design pillars.  
+[See here](../blob/master/Documentation/CoreVision.md)
 
 ## Game Design Document
 The game design document will be written once we have completed the Core Vision Document.
