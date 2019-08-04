@@ -5,6 +5,10 @@ It will be a free, open-source, cross-platform multi-player RPG expierience with
 
 This project is currently within the design stage and no code has actually been written as of yet.
 
+## Project Stages
+Read the core Stages document to get a grasp of the current stage of the project.  
+[See here](../master/Documentation/Stages.md)
+
 ## Core Vision Document
 Read the core Vision document to get a grasp of the core idea's and the vision for the game including the design pillars.  
 [See here](../master/Documentation/CoreVision.md)
