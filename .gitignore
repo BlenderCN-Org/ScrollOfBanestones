@@ -1,0 +1,12 @@
+# Build Files
+*.so
+*.dll
+*.dylib
+*.a
+*.lib
+*.o
+*.lo
+*.la
+
+# macOS
+.DS_Store
