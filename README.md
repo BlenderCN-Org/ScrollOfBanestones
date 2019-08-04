@@ -1,7 +1,7 @@
 # Scrolls of Banestones
 
-Scrolls of Banestones is an open source single-player third person fantasy RPG game set in a fictional universe.
-It will be a free, open-source, cross-platform single-player RPG expierience with intended mod support.
+Scrolls of Banestones is an open source multi-player third person fantasy RPG game set in a fictional universe.
+It will be a free, open-source, cross-platform multi-player RPG expierience with intended mod support.
 
 This project is currently within the design stage and no code has actually been written as of yet.
 
