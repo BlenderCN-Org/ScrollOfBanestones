@@ -7,7 +7,7 @@ This project is currently within the design stage and no code has actually been 
 
 ## Core Vision Document
 Read the core Vision document to get a grasp of the core idea's and the vision for the game including the design pillars.  
-[See here](../blob/master/Documentation/CoreVision.md)
+[See here](../master/Documentation/CoreVision.md)
 
 ## Game Design Document
 The game design document will be written once we have completed the Core Vision Document.
