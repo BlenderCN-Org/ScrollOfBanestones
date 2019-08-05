@@ -106,3 +106,16 @@ Graphics:
 * Draw Distance
 * Texture Filtering
 * Ansiotropy
+
+## Server
+All servers should have a basic config file at the server root which will contain settings such as:
+* Gamemode
+* Plugins
+* Max Players
+* Password
+* Language
+* Port
+
+The server executable file should be a command line application that should not require a GUI, although we may provide a GUI based server app as a frontend for the command line app for those more comfortable in a GUI-based environment.
+
+The server executable should be a familar expierience on all platforms.
