@@ -1,6 +1,6 @@
 # Core Vision Document
-**Version:** 0.3  
-**Last Updated:** 4th, August 2019.  
+**Version:** 0.4  
+**Last Updated:** 5th, August 2019.  
 **Note:** This document does *not* represent the final product. The final product could be vastly different to what is presented in this document.  
 This document will also talk using future-tense ("will do" instead of "I did", etc)
 
