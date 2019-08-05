@@ -1,3 +1,6 @@
+# Directories
+[Bb]uild/
+
 # Build Files
 *.so
 *.dll
