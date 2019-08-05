@@ -18,5 +18,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 # Turn off any compiler specific extensions.
 set(CMAKE_CXX_EXTENSIONS FALSE)
 
+# Add the cmake modules directory
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH} ${CMAKE_SOURCE_DIR}/CMake")
+
+# Find SDL2
+find_package(SDL2 REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS})
+
 # Include the source sub directory
 add_subdirectory(Source)
