@@ -1,6 +1,6 @@
 # Game Design Document
-**Version:** 0.2 
-**Last Updated:** 5th, August 2019.  
+**Version:** 0.2  
+**Last Updated:** 7th, August 2019.  
 
 ## General Overview
 
@@ -117,6 +117,11 @@ The player should be able change the following about their character:
 * Body Armour (Chest)
 * Head Armour (Helmet)
 
+### Editor
+The editor will be called "Scrolls of Banestones Editor" and it will be a seperate application that will share a lot of code with the main game but the user interface will be designed to allow the user to create and edit worldspaces and maps.
+
+This editor will be described in better detail in [Game Editor Design Document](../master/Documentation/EditorDesign.md).
+
 ## Character System
 
 ### Character Creation
@@ -149,14 +154,18 @@ A worldspace will contain the following data:
 * Water Enabled (bool)
 * Climate (string)
 * Climate Enabled (bool)
+* Ambient Sound
 * Ambience Enabled (bool)
 
 If `Sky Enabled` is true, set the sky colour to what ever is defined in the `Sky Colour`, otherwise the sky colour to black (000000)
 Set the gravity to what ever the defined value is, it is by default at 1.0f.
 If `Water Enabled` is true, set the colour of the water to the `Water Colour`
 If `Climate Enabled` is true, set the climate to the specified climate.
+If `Ambience Enabled` is true, play and loop the `Ambient Sound`.
 
 ### Maps
+
+Each worldspace will be able to have a large amount of maps and moving from one map to another should not be noticable to the end user (i.e. no loading screen) whereas moving from a worldspace will require a loading screen.
 
 ### Climates
 
