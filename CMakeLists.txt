@@ -32,6 +32,10 @@ include_directories(${SDL2_INCLUDE_DIRS})
 # Find OpenGL
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIR})
+if(APPLE)
+    # Temporary Measure only until I find a better solution for hiding OpenGL deprecation warnings
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
+endif()
 
 # Find GLM
 add_subdirectory(External/glm EXCLUDE_FROM_ALL)

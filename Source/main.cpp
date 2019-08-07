@@ -22,6 +22,11 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 
+// Matrix
+#include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 // Rendering
 void CreateTriangle();
 void RenderTriangle();
@@ -82,6 +87,19 @@ void CreateWindow()
 
     GLuint programID = LoadShaders( "Data/SimpleVertexShader.glsl", "Data/SimpleFragmentShader.glsl" );
 
+    glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+
+    glm::mat4 viewMatrix = glm::lookAt(
+        glm::vec3(4.0f, 3.0f, 3.0f), 
+        glm::vec3(0.0f, 0.0f, 0.0f), 
+        glm::vec3(0.0f, 1.0f, 0.0f)
+    );
+
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
+    glm::mat4 modelViewProjection = projectionMatrix * viewMatrix * modelMatrix;
+
+    GLuint matrixID = glGetUniformLocation(programID, "MVP");
+
     CreateTriangle();
 
     SDL_Event event;
@@ -98,6 +116,8 @@ void CreateWindow()
         glClearColor(0,0,0,1);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glUseProgram(programID);
+
+        glUniformMatrix4fv(matrixID, 1, GL_FALSE, &modelViewProjection[0][0]);
 
         RenderTriangle();
 
