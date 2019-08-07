@@ -138,7 +138,9 @@ void CreateWindow()
         return;
     }
 
-    m_Window = SDL_CreateWindow("Scrolls of Banestones", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, SDL_WINDOW_OPENGL);
+    int width = 1280;
+    int height = 800;
+    m_Window = SDL_CreateWindow("Scrolls of Banestones", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_OPENGL);
     if(!m_Window)
     {
         std::cerr << "SDL CreateWindow Error: " + std::string(SDL_GetError()) << std::endl;
@@ -161,7 +163,7 @@ void CreateWindow()
 
     GLuint programID = LoadShaders( "Data/SimpleVertexShader.glsl", "Data/SimpleFragmentShader.glsl" );
 
-    glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
+    glm::mat4 projectionMatrix = glm::perspective(glm::radians(45.0f), (float)width / (float)height, 0.1f, 100.0f);
 
     glm::mat4 viewMatrix = glm::lookAt(
         glm::vec3(4.0f, 3.0f, 3.0f), 
