@@ -33,6 +33,9 @@ include_directories(${SDL2_INCLUDE_DIRS})
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIR})
 
+# Find GLM
+add_subdirectory(External/glm EXCLUDE_FROM_ALL)
+
 # Copy assets to build folder
 file(COPY ${PROJECT_ASSETS} DESTINATION ${PROJECT_ASSETS_OUTPUT})
 
