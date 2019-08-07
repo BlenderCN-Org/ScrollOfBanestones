@@ -120,7 +120,7 @@ The player should be able change the following about their character:
 ### Editor
 The editor will be called "Scrolls of Banestones Editor" and it will be a seperate application that will share a lot of code with the main game but the user interface will be designed to allow the user to create and edit worldspaces and maps.
 
-This editor will be described in better detail in [Game Editor Design Document](../master/Documentation/EditorDesign.md).
+This editor will be described in better detail in [Game Editor Design Document](../Documentation/EditorDesign.md).
 
 ## Character System
 
