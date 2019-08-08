@@ -13,8 +13,10 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include <chrono>
+#include <thread>
 
-// I'm aware that OpenGL is deprecated on macOS, but most rendering code will be behind a wrapper anyway in production.
+// I'm aware that OpenGL is deprecated on macOS, but most rendering code will be behind a wrapper anyway in production so we'll likely be using Metal there anyway.
 #ifdef __APPLE__
     #include <OpenGL/gl3.h>
 #endif
@@ -30,96 +32,9 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 // Rendering
-void CreateTriangle();
-void RenderTriangle();
 GLuint LoadShaders(const char* vertexFilePath, const char* fragmentFilePath);
 
-GLuint colourID;
-GLuint vertexArrayID;
-GLuint vertexBuffer;
 SDL_GLContext m_Context;
-
-// Array of 3 vectors that will represent our triangle.
-static const GLfloat g_VertexBufferData[] =
-{
-    -1.0f,-1.0f,-1.0f, // triangle 1 : begin
-    -1.0f,-1.0f, 1.0f,
-    -1.0f, 1.0f, 1.0f, // triangle 1 : end
-    1.0f, 1.0f,-1.0f, // triangle 2 : begin
-    -1.0f,-1.0f,-1.0f,
-    -1.0f, 1.0f,-1.0f, // triangle 2 : end
-    1.0f,-1.0f, 1.0f,
-    -1.0f,-1.0f,-1.0f,
-    1.0f,-1.0f,-1.0f,
-    1.0f, 1.0f,-1.0f,
-    1.0f,-1.0f,-1.0f,
-    -1.0f,-1.0f,-1.0f,
-    -1.0f,-1.0f,-1.0f,
-    -1.0f, 1.0f, 1.0f,
-    -1.0f, 1.0f,-1.0f,
-    1.0f,-1.0f, 1.0f,
-    -1.0f,-1.0f, 1.0f,
-    -1.0f,-1.0f,-1.0f,
-    -1.0f, 1.0f, 1.0f,
-    -1.0f,-1.0f, 1.0f,
-    1.0f,-1.0f, 1.0f,
-    1.0f, 1.0f, 1.0f,
-    1.0f,-1.0f,-1.0f,
-    1.0f, 1.0f,-1.0f,
-    1.0f,-1.0f,-1.0f,
-    1.0f, 1.0f, 1.0f,
-    1.0f,-1.0f, 1.0f,
-    1.0f, 1.0f, 1.0f,
-    1.0f, 1.0f,-1.0f,
-    -1.0f, 1.0f,-1.0f,
-    1.0f, 1.0f, 1.0f,
-    -1.0f, 1.0f,-1.0f,
-    -1.0f, 1.0f, 1.0f,
-    1.0f, 1.0f, 1.0f,
-    -1.0f, 1.0f, 1.0f,
-    1.0f,-1.0f, 1.0f
-};
-
-static const GLfloat g_Color_Buffer_Data[] =
-{
-    0.583f,  0.771f,  0.014f,
-    0.609f,  0.115f,  0.436f,
-    0.327f,  0.483f,  0.844f,
-    0.822f,  0.569f,  0.201f,
-    0.435f,  0.602f,  0.223f,
-    0.310f,  0.747f,  0.185f,
-    0.597f,  0.770f,  0.761f,
-    0.559f,  0.436f,  0.730f,
-    0.359f,  0.583f,  0.152f,
-    0.483f,  0.596f,  0.789f,
-    0.559f,  0.861f,  0.639f,
-    0.195f,  0.548f,  0.859f,
-    0.014f,  0.184f,  0.576f,
-    0.771f,  0.328f,  0.970f,
-    0.406f,  0.615f,  0.116f,
-    0.676f,  0.977f,  0.133f,
-    0.971f,  0.572f,  0.833f,
-    0.140f,  0.616f,  0.489f,
-    0.997f,  0.513f,  0.064f,
-    0.945f,  0.719f,  0.592f,
-    0.543f,  0.021f,  0.978f,
-    0.279f,  0.317f,  0.505f,
-    0.167f,  0.620f,  0.077f,
-    0.347f,  0.857f,  0.137f,
-    0.055f,  0.953f,  0.042f,
-    0.714f,  0.505f,  0.345f,
-    0.783f,  0.290f,  0.734f,
-    0.722f,  0.645f,  0.174f,
-    0.302f,  0.455f,  0.848f,
-    0.225f,  0.587f,  0.040f,
-    0.517f,  0.713f,  0.338f,
-    0.053f,  0.959f,  0.120f,
-    0.393f,  0.621f,  0.362f,
-    0.673f,  0.211f,  0.457f,
-    0.820f,  0.883f,  0.371f,
-    0.982f,  0.099f,  0.879f
-};
-// Rendering end
 
 void CreateWindow();
 
@@ -184,6 +99,9 @@ void CreateWindow()
     ObjectLoader monkey("Data/Models/Monkey.obj");
     monkey.CreateObject();
 
+    ObjectLoader bed("Data/Models/Bed.obj");
+    bed.CreateObject();
+
     SDL_Event event;
     bool running = true;
     while(running)
@@ -202,6 +120,7 @@ void CreateWindow()
         glUniformMatrix4fv(matrixID, 1, GL_FALSE, &modelViewProjection[0][0]);
 
         monkey.RenderObject();
+        bed.RenderObject();
 
         SDL_GL_SwapWindow(m_Window);
     }
@@ -209,58 +128,6 @@ void CreateWindow()
     SDL_GL_DeleteContext(m_Context);
     SDL_DestroyWindow(m_Window);
     SDL_Quit();
-}
-
-// Rendering
-// Rendering code, very very messy, will clean up once in production.
-void CreateTriangle()
-{
-    // Generate VAO
-    glGenVertexArrays(1, &vertexArrayID);
-    glBindVertexArray(vertexArrayID);
-
-    // Generate buffer
-    glGenBuffers(1, &vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(g_VertexBufferData), g_VertexBufferData, GL_STATIC_DRAW);
-
-    // Generate Colours
-    glGenBuffers(1, &colourID);
-    glBindBuffer(GL_ARRAY_BUFFER, colourID);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(g_Color_Buffer_Data), g_Color_Buffer_Data, GL_STATIC_DRAW);
-}
-
-void RenderTriangle()
-{
-    glGenVertexArrays(1, &vertexArrayID);
-    glBindVertexArray(vertexArrayID);
-
-    // Vertex Array
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    glVertexAttribPointer(
-        0,
-        3,
-        GL_FLOAT,
-        GL_FALSE,
-        0,
-        (void*)0
-    );
-
-    // Colours
-    glEnableVertexAttribArray(1);
-    glBindBuffer(GL_ARRAY_BUFFER, colourID);
-    glVertexAttribPointer(
-        1,
-        3,
-        GL_FLOAT,
-        GL_FALSE,
-        0,
-        (void*)0
-    );
-
-    glDrawArrays(GL_TRIANGLES, 0, 12*3);
-    glDisableVertexAttribArray(0);
 }
 
 GLuint LoadShaders(const char* vertexFilePath, const char* fragmentFilePath)

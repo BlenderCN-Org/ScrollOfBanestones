@@ -54,13 +54,13 @@ ObjectLoader::ObjectLoader(std::string objFile)
                     unsigned int vertexIndex[3], uvIndex[3], normalIndex[3];
                     int matches = fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n",
                         &vertexIndex[0],
-                        &vertexIndex[1],
-                        &vertexIndex[2],
                         &uvIndex[0],
-                        &uvIndex[1],
-                        &uvIndex[2],
                         &normalIndex[0],
+                        &vertexIndex[1],
+                        &uvIndex[1],
                         &normalIndex[1],
+                        &vertexIndex[2],
+                        &uvIndex[2],
                         &normalIndex[2]
                     );
 
@@ -159,4 +159,12 @@ void ObjectLoader::RenderObject()
     glDrawArrays(GL_TRIANGLES, 0, vertices.size());
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
+}
+
+void ObjectLoader::SetPosition(glm::vec3 position)
+{
+    glm::mat4 modelMatrix(1.0f);
+    modelMatrix = glm::translate(modelMatrix, position);
+
+    glUniformMatrix4fv(glGetUniformLocation(programID, "MVP", 1, GL_FALSE, glm::value_ptr(modelMatrix)));
 }

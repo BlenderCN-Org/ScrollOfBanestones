@@ -1,6 +1,9 @@
 #include <string>
 #include <vector>
+
 #include <glm/glm.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #ifdef __APPLE__
     #include <OpenGL/gl3.h>
@@ -18,8 +21,12 @@ public:
 
     void CreateObject();
     void RenderObject();
+    void SetPosition(glm::vec3 position);
+    void SetRotiation(glm::vec3 rotation);
+    void SetScale(glm::vec3 scale);
 private:
     GLuint vertexArrayID;
     GLuint vertexBuffer;
     GLuint uvBuffer;
+    GLuint programID;
 };
