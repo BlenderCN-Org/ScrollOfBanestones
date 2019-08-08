@@ -44,7 +44,7 @@ The art style for this game will be considered "cartoonish" which will be the fo
 * Light Colours with slight gradients.  
 
 Here is a visual image showing the colour palette that we intend on using for most GUI and texture elements:  
-![Colour Palette](https://github.com/scrollofbanestones/ScrollOfBanestones/tree/master/Documentation/Images/ColourPalette.png "Colour Palette")
+![Colour Palette](https://raw.githubusercontent.com/scrollofbanestones/ScrollOfBanestones/master/Documentation/Images/ColourPalette.png "Colour Palette")
 
 ### Concept Art
 
