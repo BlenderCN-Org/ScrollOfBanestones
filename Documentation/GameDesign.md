@@ -39,6 +39,13 @@ I do believe that Travis CI is macOS & Linux only, we'll probably need a similar
 
 ### Artistic Style
 
+The art style for this game will be considered "cartoonish" which will be the following:
+* Happy Vibe overall, but for the slightly darker maps such as a demonic level, we should go for a slightly darker colour that fits with our colour pallete.  
+* Light Colours with slight gradients.  
+
+Here is a visual image showing the colour palette that we intend on using for most GUI and texture elements:  
+![Colour Palette](https://github.com/scrollofbanestones/ScrollOfBanestones/tree/master/Documentation/Images/ColourPalette.png "Colour Palette")
+
 ### Concept Art
 
 ## Features
