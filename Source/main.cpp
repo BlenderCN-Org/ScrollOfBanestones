@@ -22,6 +22,8 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 
+#include "ObjectLoader.hpp"
+
 // Matrix
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
@@ -179,7 +181,8 @@ void CreateWindow()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
-    CreateTriangle();
+    ObjectLoader monkey("Data/Models/Monkey.obj");
+    monkey.CreateObject();
 
     SDL_Event event;
     bool running = true;
@@ -198,7 +201,7 @@ void CreateWindow()
 
         glUniformMatrix4fv(matrixID, 1, GL_FALSE, &modelViewProjection[0][0]);
 
-        RenderTriangle();
+        monkey.RenderObject();
 
         SDL_GL_SwapWindow(m_Window);
     }
@@ -309,7 +312,7 @@ GLuint LoadShaders(const char* vertexFilePath, const char* fragmentFilePath)
         std::cerr << "Vertex Shader Error: " + std::string(&vertexShaderErrorMessage[0]) << std::endl;
     }
 
-    std::cout << "Compiling fragment shader: " + std::string(vertexFilePath) << std::endl;
+    std::cout << "Compiling fragment shader: " + std::string(fragmentFilePath) << std::endl;
     char const *fragmentSourcePointer = fragmentShaderCode.c_str();
     glShaderSource(fragmentShaderID, 1, &fragmentSourcePointer, NULL);
     glCompileShader(fragmentShaderID);
