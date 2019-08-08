@@ -208,3 +208,9 @@ There will be a number of different climates that will be in the game:
 ### Plugins
 
 ## Main Story
+
+The game story will revolve around an ancient mostly forgotten prophesy where an ancient race of people will attempt to reclaim their land from the current occupants. This was told by small number of people but who also dismissed the prophesy also.
+
+This race of people will start to attack the land in small numbers whilst as the game progresses, their attacks will get stronger and larger resulting in widespread panic amongst the current occupants.
+
+From this, the local armies will attempt to fight these attacking hordes but a hero or group of heroes will emerge to fight this growing menace and in doing so will stop this invasion.
