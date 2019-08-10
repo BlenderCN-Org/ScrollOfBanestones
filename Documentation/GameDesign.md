@@ -83,6 +83,19 @@ final_damage = damage - (armour_strength / 2)
 
 If the player has an armour strength of 10, the damage will be reduced to **30 health points**.
 
+The combat will be designed to fit the art style and feel of the game, being cartoonish, and over-the-top.
+Essential parts of the combat:
+  We need to make it feel rewarding when the player lands a hit on an enemy, we can do that through screen-shake, very brief pauses of the game and through different anymations, particles and sounds.
+  It is needed to exagerate the types of weapons, meaning that if the player is wielding a big hammer or something of that sort, it if will take a while for the hammer to hit, but when it hits it will feel much more rewarding than a much smaller, but much faster weapon. A small sword, for example, would be really fast and will feel in no way as rewarding as a big hammer with one hit, but will feel just as rewarding when landing a spree of hits on an enemy. The amount of rewardness will accumulate with every hit.
+  
+Responsiveness:
+  This is also essential, but I felt like it deserves it's own part in this document.
+  The combat will have to feel very responsive, doing exactly what the player wants to do, whenever he does it. We shouldn't implement any features such as the ones in Dark Souls or The Witcher 3 where you can't cancel an attack or such. If the player wants to cancel it, so be it.
+  
+Other:
+  We could think about ranged weapons too, but they also have to apply to the same concepts, feeling responsive, powerful, exaggerating the parts in which they shine, and the parts in which they don't, and feeling rewarding.
+  We also still have to think about the difficulty of the combat.
+
 #### Exploration
 Exploration means that the player should be able to explore the world around them in an open world envionment that is typical of many action RPGs. They should be able to travel between different towns, cities and into different area's, preferably with little to no loading screens (if possible).
 
