@@ -1,6 +1,7 @@
 set(SOURCE
     main.cpp
     ObjectLoader.cpp
+    Renderer.cpp
     )
 
 add_executable(${PROJECT_NAME} ${SOURCE})

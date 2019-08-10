@@ -1,3 +1,6 @@
+#ifndef OBJECT_LOADER_HPP
+#define OBJECT_LOADER_HPP
+
 #include <string>
 #include <vector>
 
@@ -29,4 +32,9 @@ private:
     GLuint vertexBuffer;
     GLuint uvBuffer;
     GLuint programID;
+
+    glm::mat4 objectMatrix;
+    glm::vec4 objectVector;
 };
+
+#endif // OBJECT_LOADER_HPP

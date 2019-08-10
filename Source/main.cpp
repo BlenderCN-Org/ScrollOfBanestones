@@ -25,6 +25,7 @@
 #include <SDL_opengl.h>
 
 #include "ObjectLoader.hpp"
+#include "Renderer.hpp"
 
 // Matrix
 #include <glm/glm.hpp>
@@ -64,19 +65,7 @@ void CreateWindow()
         return;
     }
 
-    SDL_GL_SetAttribute( SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE );
-    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MAJOR_VERSION, 4 );
-    SDL_GL_SetAttribute( SDL_GL_CONTEXT_MINOR_VERSION, 1 );
-
-    m_Context = SDL_GL_CreateContext(m_Window);
-    if(!m_Context)
-    {
-        std::cerr << "SDL GL CreateContext Error: " + std::string(SDL_GetError()) << std::endl;
-        return;
-    }
-
-    std::cout << "OpenGL Version: " + std::string((char *)glGetString(GL_VERSION)) << std::endl;
-    std::cout << "GLSL Version: " + std::string((char *)glGetString(GL_SHADING_LANGUAGE_VERSION)) << std::endl;
+    Renderer::GetInstance()->CreateContext(m_Window);
 
     GLuint programID = LoadShaders( "Data/SimpleVertexShader.glsl", "Data/SimpleFragmentShader.glsl" );
 
@@ -113,19 +102,17 @@ void CreateWindow()
                 running = false;
             }
         }
-        glClearColor(0,0,0,1);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        Renderer::GetInstance()->Clear();
         glUseProgram(programID);
 
         glUniformMatrix4fv(matrixID, 1, GL_FALSE, &modelViewProjection[0][0]);
 
         monkey.RenderObject();
         bed.RenderObject();
-
-        SDL_GL_SwapWindow(m_Window);
+        Renderer::GetInstance()->SwapWindow();
     }
 
-    SDL_GL_DeleteContext(m_Context);
+    Renderer::GetInstance()->DestroyContext();
     SDL_DestroyWindow(m_Window);
     SDL_Quit();
 }

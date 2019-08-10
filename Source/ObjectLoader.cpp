@@ -8,6 +8,7 @@
 
 ObjectLoader::ObjectLoader(std::string objFile)
 {
+    objectMatrix = glm::mat4(1.0f);
     std::vector<unsigned int> vertexIndices;
     std::vector<unsigned int> uvIndices;
     std::vector<unsigned int> normalIndices;
@@ -128,7 +129,7 @@ void ObjectLoader::CreateObject()
     // Generate buffer
     glGenBuffers(1, &uvBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, uvBuffer);
-    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec3), &uvs[0], GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, uvs.size() * sizeof(glm::vec2), &uvs[0], GL_STATIC_DRAW);
 }
 
 void ObjectLoader::RenderObject()
@@ -166,5 +167,5 @@ void ObjectLoader::SetPosition(glm::vec3 position)
     glm::mat4 modelMatrix(1.0f);
     modelMatrix = glm::translate(modelMatrix, position);
 
-    glUniformMatrix4fv(glGetUniformLocation(programID, "MVP", 1, GL_FALSE, glm::value_ptr(modelMatrix)));
+    //glUniformMatrix4fv(glGetUniformLocation(programID, "MVP", 1, GL_FALSE, glm::value_ptr(modelMatrix)));
 }
