@@ -1,5 +1,6 @@
 #include "Application.hpp"
 #include "Window.hpp"
+#include "Renderer.hpp"
 #include <SDL.h>
 #include <iostream>
 #include <chrono>
@@ -33,6 +34,11 @@ int Application::Run()
     }
 
     // Init OpenGL Options
+    if(Renderer::GetInstance()->CreateContext(Window::GetInstance()->GetWindow()) != true)
+    {
+        std::cerr << "Cannot create renderer: " + std::string(SDL_GetError()) << std::endl;
+        return 1;
+    }
 
     // Init Matrix
     
@@ -70,9 +76,10 @@ void Application::Update()
                 break;
         }
     }
+    Renderer::GetInstance()->Clear();
 }
 
 void Application::Render()
 {
-
+    Renderer::GetInstance()->SwapWindow();
 }

@@ -18,6 +18,7 @@ public:
 
     void ToggleFullscreen(bool fullscreen);
     static Window* GetInstance();
+    SDL_Window* GetWindow();
 private:
     void Update();
 private:

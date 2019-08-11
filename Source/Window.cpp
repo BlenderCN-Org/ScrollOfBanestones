@@ -62,6 +62,11 @@ Window* Window::GetInstance()
     return s_Instance;
 }
 
+SDL_Window* Window::GetWindow()
+{
+    return m_Window;
+}
+
 void Window::Update()
 {
 
