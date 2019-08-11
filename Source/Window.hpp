@@ -24,7 +24,6 @@ private:
 private:
     static Window* s_Instance;
     SDL_Window* m_Window;
-    bool m_Running;
 };
 
 #endif // !WINDOW_HPP
