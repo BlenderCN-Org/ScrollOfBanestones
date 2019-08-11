@@ -8,10 +8,23 @@
     ... I'll go about refactering the c++ code to be more in line with real c++.
 */
 
+#include <exception>
+#include <SDL.h>
 #include "Application.hpp"
+#include "Logging.hpp"
 
 int main(int argc, char* argv[])
 {
-    Application application(argc, argv);
-    return application.Run();
+    try
+    {
+        Application application(argc, argv);
+        return application.Run();
+    }
+    catch(std::exception& error)
+    {
+        std::string errorMessage = std::string(error.what());
+        Log(LogLevel::Error) << "Fatal Error: " + errorMessage;
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Fatal Error", errorMessage.c_str(), NULL);
+    }
+    return 1;
 }
