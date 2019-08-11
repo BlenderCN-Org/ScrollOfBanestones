@@ -4,6 +4,7 @@ set(SOURCE
     Window.cpp
     Renderer.cpp
     Logging.cpp
+    Utility.cpp
     )
 
 add_executable(${PROJECT_NAME} ${SOURCE})

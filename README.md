@@ -28,7 +28,7 @@ Yes, it will be free as in beer and free as in freedom. This game will be licens
 The game assets though will most likely be kept under a seperate license.
 
 ### What engine will you be using?
-That has not been decided as of yet. We could use Unity, Unreal, CryEngine or we could roll our own engine, the last option seems to be the most common for many open-source games and remakes (such as 0 A.D. and OpenMW).
+We have decided that we will be rolling our own engine which will be made using C++ and OpenGL (We will write the renderer in a way that we can also use Direct3D, Metal and Vulkan as well)
 
 ### What language will be used?
 That depends on what engine we decide to use. If we go down the Unity3D route, it'll be C#. If we go Unreal, C++. If we roll our own, that'll depend on the engine we design.

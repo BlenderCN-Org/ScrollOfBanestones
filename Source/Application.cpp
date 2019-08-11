@@ -1,6 +1,8 @@
 #include "Application.hpp"
 #include "Window.hpp"
 #include "Renderer.hpp"
+#include "Logging.hpp"
+#include "Utility.hpp"
 #include <SDL.h>
 #include <iostream>
 #include <chrono>
@@ -27,7 +29,8 @@ int Application::Run()
     }
 
     // Init Window
-    if(Window::GetInstance()->CreateWindow("Scrolls of Banestones", glm::vec2(1280, 720), false) != true)
+    Log(LogLevel::Info) << "Screen Size: " + Utility::GetScreenSizeString();
+    if(Window::GetInstance()->CreateWindow("Scrolls of Banestones", glm::vec2(Utility::GetScreenSize()), false) != true)
     {
         std::cerr << "Cannot create window: " + std::string(SDL_GetError()) << std::endl;
         return 1;
