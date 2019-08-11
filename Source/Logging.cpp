@@ -14,7 +14,7 @@ Log::Log(LogLevel logLevel) :
         switch(m_LogLevel)
         {
             case LogLevel::Error:
-                std::cout << "[Error] ";
+                std::cerr << "[Error] ";
                 break;
             case LogLevel::Warning:
                 std::cout << "[Warning] ";
@@ -29,7 +29,14 @@ Log::Log(LogLevel logLevel) :
 
 Log::~Log()
 {
-    std::cout << std::endl;
+    if(m_LogLevel == LogLevel::Error)
+    {
+        std::cerr << std::endl;
+    }
+    else
+    {
+        std::cout << std::endl;
+    }   
 }
 
 void Log::SetLogLevel(LogLevel logLevel)
