@@ -27,6 +27,16 @@ bool Renderer::CreateContext(SDL_Window* window)
     {
         return false;
     }
+
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CCW);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #ifndef NDEBUG
     std::cout << "OpenGL Version: " + std::string((char *)glGetString(GL_VERSION)) << std::endl;
     std::cout << "GLSL Version: " + std::string((char *)glGetString(GL_SHADING_LANGUAGE_VERSION)) << std::endl;
