@@ -1,4 +1,5 @@
 #include "Renderer.hpp"
+#include "Logging.hpp"
 
 Renderer* Renderer::s_Instance = nullptr;
 
@@ -38,8 +39,8 @@ bool Renderer::CreateContext(SDL_Window* window)
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 #ifndef NDEBUG
-    std::cout << "OpenGL Version: " + std::string((char *)glGetString(GL_VERSION)) << std::endl;
-    std::cout << "GLSL Version: " + std::string((char *)glGetString(GL_SHADING_LANGUAGE_VERSION)) << std::endl;
+    Log(LogLevel::Info) << "OpenGL Version: " + std::string((char *)glGetString(GL_VERSION));
+    Log(LogLevel::Info) << "GLSL Version: " + std::string((char *)glGetString(GL_SHADING_LANGUAGE_VERSION));
 #endif
     return true;
 }
@@ -52,12 +53,13 @@ void Renderer::DestroyContext()
 void Renderer::Clear()
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
 void Renderer::SwapWindow()
 {
     SDL_GL_SwapWindow(m_Window);
+    glFlush();
 }
 
 Renderer* Renderer::GetInstance()
