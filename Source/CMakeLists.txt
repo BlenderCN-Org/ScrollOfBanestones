@@ -1,6 +1,7 @@
 set(SOURCE
     main.cpp
     Application.cpp
+    Window.cpp
     )
 
 add_executable(${PROJECT_NAME} ${SOURCE})
