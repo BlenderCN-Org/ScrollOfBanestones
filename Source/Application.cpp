@@ -7,6 +7,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <exception>
 
 Application::Application(int argc, char* argv[])
     : m_Running(true)
@@ -24,23 +25,20 @@ int Application::Run()
     // Init SDL
     if(SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
-        std::cerr << "Cannot init SDL: " + std::string(SDL_GetError()) << std::endl;
-        return 1;
+        throw std::runtime_error("Cannot init SDL: " + std::string(SDL_GetError()));
     }
 
     // Init Window
     Log(LogLevel::Info) << "Screen Size: " + Utility::GetScreenSizeString();
     if(Window::GetInstance()->CreateWindow("Scrolls of Banestones", glm::vec2(Utility::GetScreenSize()), false) != true)
     {
-        std::cerr << "Cannot create window: " + std::string(SDL_GetError()) << std::endl;
-        return 1;
+        throw std::runtime_error("Cannot create window: " + std::string(SDL_GetError()));
     }
 
     // Init OpenGL Options
     if(Renderer::GetInstance()->CreateContext(Window::GetInstance()->GetWindow()) != true)
     {
-        std::cerr << "Cannot create renderer: " + std::string(SDL_GetError()) << std::endl;
-        return 1;
+        throw std::runtime_error("Cannot create renderer: " + std::string(SDL_GetError()));
     }
 
     // Init Matrix
