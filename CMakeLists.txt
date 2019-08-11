@@ -25,6 +25,17 @@ set(CMAKE_CXX_EXTENSIONS FALSE)
 # Add the cmake modules directory
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMake")
 
+# Set C++ flags
+if(NOT MSVC)
+    # If not MSVC, then set Clang/GCC C++ flags.
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -std=c++17 -pedantic")
+    if(APPLE)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
+    endif()
+else()
+    # Someone with Visual Studio can set the equivelant flags
+endif()
+
 # Find SDL2
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
@@ -32,10 +43,6 @@ include_directories(${SDL2_INCLUDE_DIRS})
 # Find OpenGL
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIR})
-if(APPLE)
-    # Temporary Measure only until I find a better solution for hiding OpenGL deprecation warnings
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
-endif()
 
 # Find GLM
 add_subdirectory(External/glm EXCLUDE_FROM_ALL)
