@@ -44,8 +44,22 @@ include_directories(${SDL2_INCLUDE_DIRS})
 find_package(OpenGL REQUIRED)
 include_directories(${OPENGL_INCLUDE_DIR})
 
+# Find FreeType
+find_package(Freetype REQUIRED)
+include_directories(${FREETYPE_INCLUDE_DIRS})
+
 # Find GLM
 add_subdirectory(External/glm EXCLUDE_FROM_ALL)
+
+# Find Ogre
+set(OGRE_BUILD_RENDERSYSTEM_METAL 1)
+set(OGRE_USE_BOOST 0)
+set(OGRE_CONFIG_THREAD_PROVIDER 0)
+set(OGRE_CONFIG_THREADS 0)
+set(OGRE_BUILD_SAMPLES2 0)
+set(OGRE_UNITY_BUILD 1)
+set(OGRE_BUILD_TESTS 0)
+add_subdirectory(External/Ogre EXCLUDE_FROM_ALL)
 
 # Copy assets to build folder
 file(COPY ${PROJECT_ASSETS} DESTINATION ${PROJECT_ASSETS_OUTPUT})

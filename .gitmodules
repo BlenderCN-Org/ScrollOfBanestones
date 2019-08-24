@@ -1,3 +1,6 @@
 [submodule "External/glm"]
 	path = External/glm
 	url = git@github.com:g-truc/glm.git
+[submodule "External/freetype"]
+	path = External/freetype
+	url = git://git.savannah.gnu.org/freetype/freetype2.git
